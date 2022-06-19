@@ -1,0 +1,14 @@
+# if(current_state, input_char, pop_char), then(new_state, push_char)
+# States: 0; 1; A: Accept; R: Reject
+# _: empty stack/input; ?: wildcard/no action
+# 
+# base state (empty string)
+# Accept empty string
+0,_,_,A,?
+# Push a on stack while seeing a's
+0,a,?,0,a
+# Move to state 1 and pop a's while seeing b's
+0,b,a,1,?
+1,b,a,1,?
+# Accept if input and stack are empty
+1,_,_,A,_
