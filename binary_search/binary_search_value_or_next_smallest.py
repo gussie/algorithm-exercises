@@ -12,29 +12,26 @@ import unittest, random
 
 
 def binary_search(array, search_value, low, high):
-	mid = int((low + high) / 2)
-	
-	if array[mid] == search_value: 
-		return array[mid]
-
-	if low == high:
-		if search_value > array[high]: 
-			return array[high]
+	if high - low == 1:
+		if search_value >= array[low]: 
+			return array[low]
 		else:
-			return array[high - 1]
+			return array[low - 1]
 
-	if search_value > array[mid]: 
-		return binary_search(array, search_value, mid+1, high)
+	mid = int(low + (high-low)/2)
+	
+	if search_value >= array[mid]: 
+		return binary_search(array, search_value, mid, high)
 	else:
-		return binary_search(array, search_value, low, mid-1)
+		return binary_search(array, search_value, low, mid)
 
 
 def return_search_value(array, search_value): 
-	if len(array) == 0:  #empty array
+	if len(array) == 0:  
 		return None
 
 	low = 0
-	high = len(array) - 1
+	high = len(array)
 
 	if search_value < array[low]: 
 		return None
